@@ -2,12 +2,13 @@
 service: todo_app_rails
 
 # Name of the container image.
-image: your-user/todo_app_rails
+image: brandonjyuhas/todo_app_rails
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 73.70.194.226
+
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -25,11 +26,12 @@ proxy:
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: your-user
+  server: ghcr.io
+  username: brandonjyuhas
 
   # Always use an access token rather than real password when possible.
   password:
-    - <%= ENV['KAMAL_REGISTRY_PASSWORD'] %>
+    - KAMAL_REGISTRY_PASSWORD
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:

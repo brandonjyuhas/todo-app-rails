@@ -11,6 +11,16 @@
 ARG RUBY_VERSION=3.2.2
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
+# Install curl and other necessary packages
+RUN apt-get update && \
+    apt-get install -y curl && \
+    rm -rf /var/lib/apt/lists/*  # Clean up to reduce image size
+
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs
+
+
 # Rails app lives here
 WORKDIR /rails
 
@@ -18,6 +28,13 @@ WORKDIR /rails
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Install yarn
+RUN npm install -g yarn
+
+# Copy the package.json and install Node.js dependencies
+COPY package.json yarn.lock ./
+RUN yarn install    
 
 # Set production environment
 ENV RAILS_ENV="production" \
@@ -38,6 +55,10 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
+
+# Copy the package.json and install Node.js dependencies
+COPY package.json yarn.lock ./
+RUN yarn install
 
 # Copy application code
 COPY . .
