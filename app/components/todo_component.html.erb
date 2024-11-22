@@ -1,9 +1,11 @@
-<turbo-frame id="todo-<%= todo.id %>">
-  <label class="label cursor-pointer flex p-3 items-start">
-    <input type="checkbox" class="checkbox checkbox-primary align-top" />
-    <div class="ml-3 flex-grow">
-      <h2 class="font-bold"><%= todo.title %></h2>
-      <p class="text-accent"><%= todo.description %></p>
-    </div>
-  </label>
+<turbo-frame id="<%= dom_id(todo) %>" class="block">
+  <%= form_with url: todo_completion_path(todo), method: :post, data: { controller: "todo-completion", action: "click->todo-completion#click" } do %>
+    <label class="p-3 label cursor-pointer flex items-start">
+      <input type="checkbox" class="checkbox checkbox-primary align-top" />
+      <div class="ml-3 flex-grow text-primary-content">
+        <h2 class="font-semibold"><%= todo.title %></h2>
+        <p class="text-sm"><%= todo.description %></p>
+      </div>
+    </label>
+  <% end %>
 </turbo-frame>

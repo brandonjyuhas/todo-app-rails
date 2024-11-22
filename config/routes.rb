@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resource :users, only: [ :new, :create ]
   resource :session
   resources :passwords, param: :token
-  resources :todos, only: [ :index, :new, :create ]
+  resources :todos, only: [ :index, :new, :create ] do
+    resource :completion, only: [ :create ], controller: "todos/completion"
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

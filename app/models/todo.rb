@@ -17,4 +17,9 @@
 
 class Todo < ApplicationRecord
   belongs_to :user
+  scope :active, -> { where(completed_at: nil) }
+
+  def completed?
+    completed_at.present?
+  end
 end

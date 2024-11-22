@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   include FunSuggestions
 
   def index
-    @todos = Current.user.todos
+    @todos = Current.user.todos.active
   end
 
   def new

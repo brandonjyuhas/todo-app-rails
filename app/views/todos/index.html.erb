@@ -1,11 +1,11 @@
 <h1 class="font-bold text-4xl">Todos</h1>
 <turbo-frame id="todos">
   <div class="my-3">
-    <ul class="divide-y-2 divide-y-accent">
+    <div class="divide-y-2 divide-y-accent">
       <% @todos.each do |todo| %>
-        <li><%= render TodoComponent.new(todo:) %></li>
+        <%= render TodoComponent.new(todo:) %>
       <% end %>
-    </ul>
+    </div>
     <turbo-frame id="new-todo">
       <%= link_to "New todo", new_todo_path, class: "btn btn-primary" %>
     </turbo-frame>
