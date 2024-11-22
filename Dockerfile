@@ -16,8 +16,8 @@ RUN apt-get update && \
     apt-get install -y curl && \
     rm -rf /var/lib/apt/lists/*  # Clean up to reduce image size
 
-# Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+# Install Node.js 21
+RUN curl -sL https://deb.nodesource.com/setup_21.x | bash - && \
     apt-get install -y nodejs
 
 
