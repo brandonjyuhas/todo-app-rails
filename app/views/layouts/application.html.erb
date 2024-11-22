@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-gray-100 w-screen">
+<html class="h-full w-screen" data-theme="nord">
   <head>
     <title><%= content_for(:title) || "Todo App Rails" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,18 +20,9 @@
   </head>
   <body class="h-full print:h-auto flex flex-col pt-16">
     <main class="grow flex flex-col">
-      <div class="mx-auto w-full">
-        <% if alert = flash[:alert] %>
-          <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
-        <% end %>
-        <% if notice = flash[:notice] %>
-          <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-        <% end %>
+      <div class="mx-auto w-full max-w-3xl">
         <%= yield %>
       </div>
     </main>
-    <div class="border-t border-t-gray-300 print:hidden">
-      Footer
-    </div>
   </body>
 </html>
