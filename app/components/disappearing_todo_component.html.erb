@@ -1,6 +1,6 @@
 <turbo-frame id="<%= dom_id(todo) %>">
   <label class="p-3 label cursor-pointer flex items-start" data-controller="disappearing-todo" data-disappearing-todo-turbo-frame-id-value="<%= dom_id(todo) %>">
-    <input type="checkbox" class="checkbox checkbox-primary align-top" checked=<%= todo.completed? %> />
+    <input type="checkbox" class="checkbox checkbox-accent align-top" checked=<%= todo.completed? %> />
     <div class="ml-3 flex-grow text-accent line-through italic">
       <h2 class="font-semibold"><%= todo.title %></h2>
       <p class="text-sm"><%= todo.description %></p>
