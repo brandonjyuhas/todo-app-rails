@@ -2,10 +2,10 @@
   <h1 class="font-bold text-4xl">Sign up</h1>
   <%= form_with model: @user, url: users_path do |form| %>
     <div class="my-3">
-      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: "text-field" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: "input input-bordered input-primary" %>
     </div>
     <div class="my-3">
-      <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "text-field" %>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "input input-bordered input-primary" %>
     </div>
     <%= form.submit "Sign up", class: "btn btn-primary" %>
   <% end %>

@@ -121,6 +121,8 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    heroicon (1.0.0)
+      rails (>= 5.2)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.3)
@@ -194,6 +196,9 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
+    platform_agent (1.0.1)
+      activesupport (>= 5.2.0)
+      useragent (~> 0.16.3)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -387,9 +392,11 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails
+  heroicon
   importmap-rails
   jbuilder
   kamal
+  platform_agent
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0)

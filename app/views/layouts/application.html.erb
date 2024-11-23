@@ -18,31 +18,46 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="h-full print:h-auto flex flex-col">
-    <nav class="px-4 sticky top-0 z-50 bg-base-200 navbar shadow-sm border-b p-0">
-      <div class="flex-1">
-        <%= link_to root_path do %>
-          <%= image_tag "logo.svg", alt: "Checkoff", class: "h-12" %>
-        <% end %>
-      </div>
-      <% if current_user %>
-        <div class="flex-none">
-          <ul class="menu menu-horizontal px-1">
-            <li>
-              <details>
-                <summary class="text-base-content">Settings</summary>
-                <ul class="bg-base-100 rounded-t-none p-2">
-                  <li><%= button_to "Sign out", session_path, method: :delete, class: "link-secondary" %></li>
-                </ul>
-              </details>
-            </li>
-          </ul>
+    <% unless turbo_native_app? %>
+      <nav class="px-4 sticky top-0 z-50 bg-base-200 navbar shadow-sm border-b p-0">
+        <div class="flex-1">
+          <%= link_to root_path do %>
+            <%= image_tag "logo.svg", alt: "Checkoff", class: "h-12" %>
+          <% end %>
         </div>
-      <% end %>
-    </nav>
+        <% if current_user %>
+          <div class="flex-none">
+            <ul class="menu menu-horizontal px-1">
+              <li>
+                <details>
+                  <summary class="text-base-content">Settings</summary>
+                  <ul class="bg-base-100 rounded-t-none p-2">
+                    <li><%= button_to "Sign out", session_path, method: :delete, class: "link-secondary" %></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+      </nav>
+    <% end %>
     <main class="px-4 sm:px-0 grow flex flex-col">
       <div class="mt-4 mx-auto w-full max-w-3xl">
         <%= yield %>
       </div>
     </main>
+    <% if turbo_native_app? %>
+      <div class="btm-nav">
+        <button class="active">
+          <%= heroicon "home", variant: :solid, options: { class: "w-6 h-6" } %>
+        </button>
+        <button>
+          <%= heroicon "calendar", variant: :solid, options: { class: "w-6 h-6" } %>
+        </button>
+        <button>
+          <%= heroicon "cog-6-tooth", variant: :solid, options: { class: "w-6 h-6" } %>
+        </button>
+      </div>
+    <% end %>
   </body>
 </html>
